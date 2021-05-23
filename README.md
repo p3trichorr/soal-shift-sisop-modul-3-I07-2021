@@ -385,7 +385,7 @@ Output:
 In problem 3B, we are needed to make the program accepts -d option, so the user may only input 1 directory as it's arguments, so the first thing that I will do, I will use `strcmp` function so it can accept the -d option, then I will use `listFilesRecursively` function, to open the directory and move the file, after that I use `struct stat` function to read all the file and to put it in the `buffer`, then I use `int err` function produces the message.
 
 Output:
-![Screenshot from 2021-05-23 21-23-50](https://user-images.githubusercontent.com/74660281/119264768-a80e3700-bc0e-11eb-8b30-cf950ce27161.png)
+![Screenshot from 2021-05-23 21-22-41](https://user-images.githubusercontent.com/74660281/119264817-dc81f300-bc0e-11eb-822e-f65a43291167.png)
 
 **c. Make the program accepts \* option, so it will categorizes all the file in the working directory when the C program is run**
 ```
@@ -401,7 +401,7 @@ if (strcmp(argv[1], "*") == 0)
 In problem 3C, we are needed to make the program accepts \* option, so it will categorizes all the file in the working directory when the C program is run, so the first thing I will do, I will use `strcmp` function so it can accept the \* option, then I will use `getcwd` function to know the file location and I will use `listFilesRecursively` function to list the file recursively.
 
 Output:
-![Uploading Screenshot from 2021-05-23 21-23-50.png…]()
+![Screenshot from 2021-05-23 21-23-50](https://user-images.githubusercontent.com/74660281/119264824-e0157a00-bc0e-11eb-8982-d9f9bfb948b6.png)
 
 **d. All files must be moved into a folder**
 ```
