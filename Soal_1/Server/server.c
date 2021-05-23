@@ -10,7 +10,7 @@
 bool isLogin = false;
 char strtemp[1001];
 
-void login(char command[], char command2[], char passid[], int new_socket);
+void login(char command[], /*char command2[],*/ char passid[], int new_socket);
 void addFile(char passid[], int new_socket);
 
 int main(int argc, char const *argv[]) {
@@ -55,7 +55,7 @@ int main(int argc, char const *argv[]) {
     read(new_socket, command, sizeof(command));
         
     if(strcmp(command, "Login") == 0 || strcmp(command, "Register") == 0)
-        login(command, command2, passid, new_socket);
+        login(command, /*command2,*/ passid, new_socket);
 
     if(strcmp(command, "Add") == 0)
         addFile(passid, new_socket);
@@ -70,7 +70,7 @@ int main(int argc, char const *argv[]) {
     return 0;
 }
 
-void login(char command[], char command2[], char passid[], int new_socket) {
+void login(char command[], /*char command2[],*/ char passid[], int new_socket) {
     FILE *akun = fopen("akun.txt", "a+"); 
     char str[1001];    
     bool check = true;
@@ -101,14 +101,14 @@ void login(char command[], char command2[], char passid[], int new_socket) {
                 strcpy(strtemp, "\nLog in successful\n1. Add File\n2. Quit\nCommand: ");
                 send(new_socket, strtemp, sizeof(strtemp), 0);
                 isLogin = true;
-				//fclose(akun);
+				fclose(akun);
 
-				read(new_socket, command2, sizeof(command2));
-				if(strcmp(command2, "Add") == 0){
-					addFile(passid, new_socket);
-				}
-				else if(strcmp(command2, "Quit"))
-					exit(EXIT_SUCCESS);
+				// read(new_socket, command2, sizeof(command2));
+				// if(strcmp(command2, "Add") == 0){
+				// 	addFile(passid, new_socket);
+				// }
+				// else if(strcmp(command2, "Quit"))
+				// 	exit(EXIT_SUCCESS);
             }
         }
         if(!isLogin) {
