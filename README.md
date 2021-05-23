@@ -176,6 +176,7 @@ void listFilesRecursively(char *basePath)
   closedir(dir);
 }
 ```
+Now, into the problem 3A, 3B, 3C, 3D, and 3E
 
 **a. Make the program accepts -f option, so the user may add file arguments to be categorized as much as they want**
 ```
