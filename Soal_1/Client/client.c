@@ -9,7 +9,7 @@
 char buffer[1024] = {0};
 int sock;
 
-void reglog(char command[], char command2[], char id[], char pass[], char passid[]);
+void reglog(char command[], /*char command2[],*/ char id[], char pass[], char passid[]);
 void addFile(char command[], char passid[], int sock);
 
 int main(int argc, char const *argv[]) {
@@ -47,7 +47,7 @@ int main(int argc, char const *argv[]) {
         send(sock, command, sizeof(command), 0);
 
         if(strcmp(command, "Login") == 0 || strcmp(command, "Register") == 0)
-            reglog(command, command2, id, pass, passid);
+            reglog(command, /*command2,*/ id, pass, passid);
 
         else if(strcmp(command, "Add") == 0)
             addFile(command, passid, sock);
@@ -63,7 +63,7 @@ int main(int argc, char const *argv[]) {
     return 0;
 }
 
-void reglog(char command[], char command2[1001], char id[], char pass[], char passid[]) {
+void reglog(char command[], /*char command2[],*/ char id[], char pass[], char passid[]) {
     char strtemp[1001];
     read(sock, strtemp, sizeof(strtemp)); // Input id and pass in one line
     printf("%s", strtemp);
@@ -80,8 +80,8 @@ void reglog(char command[], char command2[1001], char id[], char pass[], char pa
     read(sock, buffer, sizeof(buffer));
     printf("%s", buffer);
 
-	scanf("%s",command2);
-	send(sock, command2, sizeof(command2), 0);
+	//scanf("%s",command2);
+	//send(sock, command2, sizeof(command2), 0);
 }
 
 void addFile(char command[], char id[], int sock) {
