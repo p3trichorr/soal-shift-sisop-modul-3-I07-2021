@@ -242,7 +242,7 @@ if (strcmp(argv[1], "*") == 0)
       }
     }
 ```
-In problem 3C, we are needed to make the program accepts \* option, so it will categorizes all the file in the working directory when the C program is run, so the first thing I will do, I will use `strcmp` function so it can accept the \* option, then I will use `getcwd` function to know the file location and I will use `listFilesRecursively` function to list the file recursively
+In problem 3C, we are needed to make the program accepts \* option, so it will categorizes all the file in the working directory when the C program is run, so the first thing I will do, I will use `strcmp` function so it can accept the \* option, then I will use `getcwd` function to know the file location and I will use `listFilesRecursively` function to list the file recursively.
 
 **d. All files must be moved into a folder**
 ```
