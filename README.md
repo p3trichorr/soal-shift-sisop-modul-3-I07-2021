@@ -18,6 +18,8 @@ Zulfiqar Rahman Aji (05111942000019)
 
 a. We want to Create a matrix multiplication program (4x3 and 3x6) and then display the results. The matrix will contain the numbers 1-20. In this time we need shared memory to give acces soal2b.c to input the matrix calculation result.
 
+Make 4x3 and 3x6 Matrix
+
 ```
  int a[4][3],b[3][6];
     
@@ -35,7 +37,7 @@ a. We want to Create a matrix multiplication program (4x3 and 3x6) and then disp
     }
 ```
 
-Then shared the memory
+Then shared the memory and do calculation
 
 ```
     int multiply[4][6];
@@ -51,7 +53,6 @@ Then shared the memory
     }
     
     /*calculate the result a*b*/
-
     for(int i=0; i<4; i++) {
         for(int j=0; j<6; j++){
             value[i*6+j] = multiply[i][j]; 
@@ -59,15 +60,17 @@ Then shared the memory
         } 
         
         printf("\n");
-    }
-    
-    /*print result in 1 matrix*/
-
-    shmdt(value);
-}
 ```
 
 b. Because we want to input result from soal2a.c so we have to use shared memory to give an acces to soal2b.c. Then calculation for the existing matrix. The calculation is that each cell originating from matrix A becomes a number for factorial, then cells from matrix B become the maximum factorial limit.
+
+``
+If a >= b  -> a!/(a-b)!
+If b > a -> a!
+If 0 -> 0
+``
+
+Input new matrix and matrix from soal2a.c
 
 ```
    // Input New Matrix
@@ -87,6 +90,8 @@ b. Because we want to input result from soal2a.c so we have to use shared memory
         printf("%d ", value[i]);
     }
 ```
+
+And from provisions we factorial it
 
 ```
  //print value from soal2a.c
@@ -124,7 +129,7 @@ b. Because we want to input result from soal2a.c so we have to use shared memory
     }
 ```
 
-c. check the top 5 processes consuming computer resources with the command  “ps aux | sort -nrk 3,3 | head -5”
+c. check the top 5 processes consuming computer resources with the command ``ps aux | sort -nrk 3,3 | head -5``
 
 ```
 char* cmd1[] = {"ps", "aux", NULL};
@@ -360,9 +365,6 @@ if (strcmp(argv[1], "-f") == 0)
 ```
 In problem 3A, we are needed to make the program accepts -f option, so the user may add file arguments to be categorized as much as they want, so the first thing that I will do, I use `strcmp` function so it can accept the -f option, after that I will make thread and output message according to the problem, then I use `int err` function to make new thread so it can move the file, lstly join the all the thread with `pthread_jon` function.
 
-Output:
-![Screenshot from 2021-05-23 21-21-44](https://user-images.githubusercontent.com/74660281/119264758-97f65780-bc0e-11eb-9b8d-cc0a6b4f87ed.png)
-
 **b. Make the program accepts -d option, so the user may only input 1 directory as it's arguments**
 ```
  else if (strcmp(argv[1], "-d") == 0)
@@ -384,9 +386,6 @@ Output:
 ```
 In problem 3B, we are needed to make the program accepts -d option, so the user may only input 1 directory as it's arguments, so the first thing that I will do, I will use `strcmp` function so it can accept the -d option, then I will use `listFilesRecursively` function, to open the directory and move the file, after that I use `struct stat` function to read all the file and to put it in the `buffer`, then I use `int err` function produces the message.
 
-Output:
-![Screenshot from 2021-05-23 21-22-41](https://user-images.githubusercontent.com/74660281/119264817-dc81f300-bc0e-11eb-822e-f65a43291167.png)
-
 **c. Make the program accepts \* option, so it will categorizes all the file in the working directory when the C program is run**
 ```
 if (strcmp(argv[1], "*") == 0)
@@ -399,9 +398,6 @@ if (strcmp(argv[1], "*") == 0)
     }
 ```
 In problem 3C, we are needed to make the program accepts \* option, so it will categorizes all the file in the working directory when the C program is run, so the first thing I will do, I will use `strcmp` function so it can accept the \* option, then I will use `getcwd` function to know the file location and I will use `listFilesRecursively` function to list the file recursively.
-
-Output:
-![Screenshot from 2021-05-23 21-23-50](https://user-images.githubusercontent.com/74660281/119264824-e0157a00-bc0e-11eb-8982-d9f9bfb948b6.png)
 
 **d. All files must be moved into a folder**
 ```
