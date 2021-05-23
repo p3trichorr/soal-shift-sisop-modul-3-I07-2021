@@ -228,6 +228,34 @@ In problem 3A, we are needed to make the program accepts -f option, so the user 
         printf("Direktori sukses disimpan!\n");
       }
 ```
-In problem 3B, we are needed to make the program accepts -d option, so the user may only input 1 directory as it's arguments, so the first thing that I will do, I will use the `listFilesRecursively` function, to open the directory and move the file, after that I use `struct stat` function to read all the file and to put it in the `buffer`, then I use `int err` function produces the message.
+In problem 3B, we are needed to make the program accepts -d option, so the user may only input 1 directory as it's arguments, so the first thing that I will do, I will use `strcmp` function so it can accept the -d option, then I will use `listFilesRecursively` function, to open the directory and move the file, after that I use `struct stat` function to read all the file and to put it in the `buffer`, then I use `int err` function produces the message.
 
 **c. Make the program accepts \* option, so it will categorizes all the file in the working directory when the C program is run**
+```
+if (strcmp(argv[1], "*") == 0)
+    {
+      if (getcwd(cwd, sizeof(cwd)) != NULL)
+      {
+        //Open the working directory
+        listFilesRecursively(cwd);
+      }
+    }
+```
+In problem 3C, we are needed to make the program accepts \* option, so it will categorizes all the file in the working directory when the C program is run, so the first thing I will do, I will use `strcmp` function so it can accept the \* option, then I will use `getcwd` function to know the file location and I will use `listFilesRecursively` function to list the file recursively
+
+**d. All files must be moved into a folder**
+```
+if(hidden[1] == '.')
+{
+  strcpy(dirname, "Hidden");
+}
+
+else
+{
+  strcpy(dirname, "Unknown");
+}
+```
+In problem 3D, we are needed to make all files to be moved into a folder, this problem is answered by answering problem 3A, 3B, and 3C. And the function above is for the `hidden` and `unknown` files.
+
+**e. Each file to be categorized will be processed by a thread to make the program run in parallel to make it quicker**
+In problem 3E, we are needed to categorized each file so it will be processed by a thread to make the program run in parallel to make it quicker, therefore I make thread according to the number of files that will be categorized and then list each thread that is run.
