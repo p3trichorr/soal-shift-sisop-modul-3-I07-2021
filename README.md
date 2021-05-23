@@ -106,17 +106,17 @@ void *move(void *filename)
 ```
 From the function above, we will categorize the file according to each of their extension, and if there is no extension the file will be input to the `Unknown` folder and the hidden file will be input to the `Hidden` folder like this
 ```
-  if(hidden[1] == '.')
-  {
-    strcpy(dirname, "Hidden");
-  }
+if(hidden[1] == '.')
+{
+  strcpy(dirname, "Hidden");
+}
 
-  else
-  {
-    strcpy(dirname, "Unknown");
-  }
+else
+{
+  strcpy(dirname, "Unknown");
+}
 ```
-And for the file with extension, I use `tolower` command because this program is case insensitive, like this
+And for the file with extension, I use `tolower` function because this program is case insensitive, like this
 ```
 for(i = 0; token[i]; i++)
 {
@@ -125,17 +125,17 @@ for(i = 0; token[i]; i++)
 ```
 In the `*move` function, I also make a function to take the file name using `strrchr` function and to move the file using `rename` function, like this
 ```
-  if (getcwd(cwd, sizeof(cwd)) != NULL)
-  {
-    char *name = strrchr(filename, '/');
-    char namefile[1000];
-    strcpy(namefile, cwd);
-    strcat(namefile, "/");
-    strcat(namefile, dirname);
-    strcat(namefile, name);
+if (getcwd(cwd, sizeof(cwd)) != NULL)
+{
+  char *name = strrchr(filename, '/');
+  char namefile[1000];
+  strcpy(namefile, cwd);
+  strcat(namefile, "/");
+  strcat(namefile, dirname);
+  strcat(namefile, name);
 
-    rename(filename, namefile);
-  }
+  rename(filename, namefile);
+}
 ```
 After the `*move` function, I will make `listFilesRecursively` function because we need to list the file recursively for number 3B and 3C. After we list the file, we will make thread and use the `*move` function as the argument and after making the thread, we will join it using `pthread_join`
 ```
@@ -178,7 +178,6 @@ void listFilesRecursively(char *basePath)
 ```
 
 **a. Make the program accepts -f option, so the user may add file arguments to be categorized as much as they want**
-
 ```
 if (strcmp(argv[1], "-f") == 0)
   {
@@ -209,3 +208,26 @@ if (strcmp(argv[1], "-f") == 0)
   }
 ```
 In problem 3A, we are needed to make the program accepts -f option, so the user may add file arguments to be categorized as much as they want, so the first thing that I will do, I use `strcmp` function so it can accept the -f option, after that I will make thread and output message according to the problem, then I use `int err` function to make new thread so it can move the file, lstly join the all the thread with `pthread_jon` function.
+
+**b. Make the program accepts -d option, so the user may only input 1 directory as it's arguments**
+```
+ else if (strcmp(argv[1], "-d") == 0)
+    {
+      //Open directory according to the second argument
+      listFilesRecursively(argv[2]);
+      struct stat buffer;
+      int err = stat(argv[2], &buffer);
+
+      if(err == -1)
+      {
+        printf("Yah, gagal disimpan :(\n");
+      }
+
+      else
+      {
+        printf("Direktori sukses disimpan!\n");
+      }
+```
+In problem 3B, we are needed to make the program accepts -d option, so the user may only input 1 directory as it's arguments, so the first thing that I will do, I will use the `listFilesRecursively` function, to open the directory and move the file, after that I use `struct stat` function to read all the file and to put it in the `buffer`, then I use `int err` function produces the message.
+
+**c. Make the program accepts \* option, so it will categorizes all the file in the working directory when the C program is run**
