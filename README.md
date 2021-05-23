@@ -16,7 +16,26 @@ Zulfiqar Rahman Aji (05111942000019)
 
 ## PROBLEM 2
 
-a. We want to Create a matrix multiplication program (4x3 and 3x6) and then display the results. The matrix will contain the numbers 1-20.
+a. We want to Create a matrix multiplication program (4x3 and 3x6) and then display the results. The matrix will contain the numbers 1-20. In this time we need shared memory to give acces soal2b.c to input the matrix calculation result.
+
+```
+ int a[4][3],b[3][6];
+    
+    printf("---Input Matrix a and b---\n");
+    for(int i=0; i<4;i++){
+    	for(int j=0;j<3;j++){
+    		scanf("%d",&a[i][j]);
+    	}
+    }
+    
+    for(int i=0; i<3;i++) {
+    	for(int j=0;j<6;j++) {
+    		scanf("%d",&b[i][j]);
+    	}
+    }
+```
+
+Then shared the memory
 
 ```
     int multiply[4][6];
