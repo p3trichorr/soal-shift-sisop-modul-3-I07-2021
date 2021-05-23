@@ -145,6 +145,12 @@ void reglog(char command[], /*char command2[],*/ char id[], char pass[], char pa
 ```
 By choosing register, the system will ask for an id and username of our choice and store them in the `akun.txt` file. If the id and password already exist, the system will print out `The inputted id and password is already listed in the system`. Choosing the login command, the system will ask us to input any existing id and password that has been stored in the `akun.txt` file. If the file inputted does not match in any the line in the `akun.txt`, the system will print out `Id and password is not listed in the system`.
 
+***Output Sample***
+
+![out1](https://user-images.githubusercontent.com/68783399/119266269-4cdf4300-bc14-11eb-9aa7-671300bed363.jpg)
+![out2](https://user-images.githubusercontent.com/68783399/119266277-51a3f700-bc14-11eb-9589-1ebf05a670c8.jpg)
+![out3](https://user-images.githubusercontent.com/68783399/119266279-549ee780-bc14-11eb-895f-c8b52060c544.jpg)
+
 **b & c. Create a file.tsv file and make and add feature**
 ```
 //Server
@@ -206,6 +212,10 @@ void addFile(char command[], char id[], int sock) {
 }
 ```
 The system will then ask about the file publicher, publication year, and the filepath of the data. The data added will then be added into the `file.tsv` file where will be made upon running the code.
+
+***Output Sample***
+
+![out4](https://user-images.githubusercontent.com/68783399/119266291-641e3080-bc14-11eb-998f-6e2759be2309.jpg)
 
 ## PROBLEM 2
 
