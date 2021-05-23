@@ -258,4 +258,5 @@ else
 In problem 3D, we are needed to make all files to be moved into a folder, this problem is answered by answering problem 3A, 3B, and 3C. And the function above is for the `hidden` and `unknown` files.
 
 **e. Each file to be categorized will be processed by a thread to make the program run in parallel to make it quicker**
+
 In problem 3E, we are needed to categorized each file so it will be processed by a thread to make the program run in parallel to make it quicker, therefore I make thread according to the number of files that will be categorized and then list each thread that is run.
