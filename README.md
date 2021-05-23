@@ -16,6 +16,137 @@ Zulfiqar Rahman Aji (05111942000019)
 
 ## PROBLEM 2
 
+a. We want to Create a matrix multiplication program (4x3 and 3x6) and then display the results. The matrix will contain the numbers 1-20.
+
+```
+    int multiply[4][6];
+
+    for(int i=0; i<4; i++) {
+        for(int j=0; j<6; j++) {
+            for(int k=0; k<3; k++) {
+                sum += arr1[i][k] * arr2[k][j];
+            }
+            multiply[i][j] = sum;
+            sum = 0;
+        }
+    }
+    
+    /*calculate the result a*b*/
+
+    for(int i=0; i<4; i++) {
+        for(int j=0; j<6; j++){
+            value[i*6+j] = multiply[i][j]; 
+            printf("%d\t", multiply[i][j]);
+        } 
+        
+        printf("\n");
+    }
+    
+    /*print result in 1 matrix*/
+
+    shmdt(value);
+}
+```
+
+b. Because we want to input result from soal2a.c so we have to use shared memory to give an acces to soal2b.c. Then calculation for the existing matrix. The calculation is that each cell originating from matrix A becomes a number for factorial, then cells from matrix B become the maximum factorial limit.
+
+```
+   // Input New Matrix
+    printf("---Input New Mat---\n");
+    for(int i=0; i<24; i++) {
+        scanf("%d", &New_mat[i]);
+    }
+
+    printf("\n");
+
+    printf("---Matrix from Soal2a.c---");
+    for(int i=0; i<24; i++) {
+        if(i%6 == 0){
+            printf("\n");
+        }
+        
+        printf("%d ", value[i]);
+    }
+```
+
+```
+ //print value from soal2a.c
+
+    printf("\n\n");
+    
+    for(unsigned long long i=0; i<24; i++) {
+       if(New_mat[i] == 0 || value[i] == 0) {
+           result[i]=0;
+       }
+       
+       else if(value[i] == 1) {
+           result[i] = 1; 
+       }
+       
+       else if(value[i] == 2) {
+           result[i] = 2;
+       }
+       
+       else {
+           if(value[i] >= New_mat[i]) {
+               result[i] = value[i];
+               for(unsigned long long a=1; a<New_mat[i]; a++){
+                   result[i] = result[i] * (value[i]-a); 
+               }
+           }
+           
+           else {
+               result[i] = value[i];
+               for(unsigned long long a=1; a<value[i]; a++){
+                   result[i] = result[i] * (value[i]-a);  
+               }
+           }
+       }
+    }
+```
+
+c. check the top 5 processes consuming computer resources with the command  “ps aux | sort -nrk 3,3 | head -5”
+
+```
+char* cmd1[] = {"ps", "aux", NULL};
+char* cmd2[] = {"sort", "-nrk", "3,3", NULL};
+char* cmd3[] = {"head", "-5", NULL};
+
+int pid;
+int pipe1[2];
+int pipe2[2];
+
+void exec1() {
+	dup2(pipe1[1], 1);
+
+	close(pipe1[0]);
+	close(pipe1[1]);
+
+	execv("/bin/ps", cmd1);
+}
+
+void exec2() {
+	dup2(pipe1[0], 0);
+	dup2(pipe2[1], 1);
+
+	close(pipe1[0]);
+	close(pipe1[1]);
+	close(pipe2[0]);
+	close(pipe2[1]);
+
+	execv("/bin/sort", cmd2);
+}
+
+void exec3() {
+	dup2(pipe2[0], 0);
+
+	close(pipe2[0]);
+	close(pipe2[1]);
+
+	execv("/bin/head", cmd3);
+}
+```
+
 ## PROBLEM 3
 
 To do problem number 3, I will first create a function named `checkfile` to check if the file is exist or not
