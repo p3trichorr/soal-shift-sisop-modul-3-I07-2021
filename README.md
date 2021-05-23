@@ -360,6 +360,9 @@ if (strcmp(argv[1], "-f") == 0)
 ```
 In problem 3A, we are needed to make the program accepts -f option, so the user may add file arguments to be categorized as much as they want, so the first thing that I will do, I use `strcmp` function so it can accept the -f option, after that I will make thread and output message according to the problem, then I use `int err` function to make new thread so it can move the file, lstly join the all the thread with `pthread_jon` function.
 
+Output:
+![Screenshot from 2021-05-23 21-21-44](https://user-images.githubusercontent.com/74660281/119264758-97f65780-bc0e-11eb-9b8d-cc0a6b4f87ed.png)
+
 **b. Make the program accepts -d option, so the user may only input 1 directory as it's arguments**
 ```
  else if (strcmp(argv[1], "-d") == 0)
@@ -381,6 +384,9 @@ In problem 3A, we are needed to make the program accepts -f option, so the user 
 ```
 In problem 3B, we are needed to make the program accepts -d option, so the user may only input 1 directory as it's arguments, so the first thing that I will do, I will use `strcmp` function so it can accept the -d option, then I will use `listFilesRecursively` function, to open the directory and move the file, after that I use `struct stat` function to read all the file and to put it in the `buffer`, then I use `int err` function produces the message.
 
+Output:
+![Screenshot from 2021-05-23 21-23-50](https://user-images.githubusercontent.com/74660281/119264768-a80e3700-bc0e-11eb-8b30-cf950ce27161.png)
+
 **c. Make the program accepts \* option, so it will categorizes all the file in the working directory when the C program is run**
 ```
 if (strcmp(argv[1], "*") == 0)
@@ -393,6 +399,9 @@ if (strcmp(argv[1], "*") == 0)
     }
 ```
 In problem 3C, we are needed to make the program accepts \* option, so it will categorizes all the file in the working directory when the C program is run, so the first thing I will do, I will use `strcmp` function so it can accept the \* option, then I will use `getcwd` function to know the file location and I will use `listFilesRecursively` function to list the file recursively.
+
+Output:
+![Uploading Screenshot from 2021-05-23 21-23-50.png…]()
 
 **d. All files must be moved into a folder**
 ```
